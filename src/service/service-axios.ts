@@ -21,7 +21,7 @@ HttpClient.interceptors.request.use(async (config) => {
 
   if (config && config.headers) {
     if (token && config.headers["Authorization"] !== "") {
-      config.headers["Authorization"] = "Bearer " + token;
+      config.headers["Authorization"] = token;
     }
     if (config.headers["Authorization"] === "") {
       delete config.headers["Authorization"];
