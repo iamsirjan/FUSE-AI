@@ -24,11 +24,7 @@ const routes: FuseRoutesType = [
     routeConfigs,
     settingsConfig.defaultAuth
   ),
-  {
-    path: "/",
-    element: <Navigate to="/examples" />,
-    auth: settingsConfig.defaultAuth,
-  },
+
   {
     path: "loading",
     element: <FuseLoading />,

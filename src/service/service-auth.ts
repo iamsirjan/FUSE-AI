@@ -46,7 +46,7 @@ const useLogoutMutation = (noToast?: boolean) => {
       queryClient.clear();
       queryClient.setQueryData(authTokenKey, () => false);
 
-      navigate("/", { replace: true });
+      navigate("/sign-in", { replace: true });
       !noToast && toastSuccess("Logged out Succesfully");
     },
   });
@@ -62,8 +62,9 @@ const useLoginMutation = () => {
   return useMutation(initLogin, {
     onSuccess: (response) => {
       loginChannel.postMessage(loginBroadcast);
+      console.log(response);
       const tokens = {
-        token: response.data.token,
+        token: response.data.access_token,
       };
       TokenService.setToken(tokens.token);
       localStorage.setItem("userDetails", JSON.stringify(response.data));

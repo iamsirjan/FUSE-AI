@@ -3,6 +3,7 @@ import { Toaster } from "react-hot-toast";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import React from "react";
+import { BrowserRouter } from "react-router-dom";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -17,11 +18,13 @@ const queryClient = new QueryClient({
 
 const Provider = ({ children }: IProvider) => {
   return (
-    <QueryClientProvider client={queryClient}>
-      <Toaster position="top-right" />
-      <HelmetProvider>{children}</HelmetProvider>
-      <ReactQueryDevtools initialIsOpen={false} />
-    </QueryClientProvider>
+    <BrowserRouter>
+      <QueryClientProvider client={queryClient}>
+        <Toaster position="top-right" />
+        <HelmetProvider>{children}</HelmetProvider>
+        <ReactQueryDevtools initialIsOpen={false} />
+      </QueryClientProvider>
+    </BrowserRouter>
   );
 };
 

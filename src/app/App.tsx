@@ -11,8 +11,9 @@ import MockAdapterProvider from "@mock-api/MockAdapterProvider";
 import { useAppSelector } from "app/store/hooks";
 import { useSelector } from "react-redux";
 import withAppProviders from "./withAppProviders";
-import { AuthRouteProvider } from "./auth/AuthRouteProvider";
 import Provider from "src/provider";
+import AppRoutes from "src/routes/AppRoutes";
+import { useAuthentication } from "src/service/service-auth";
 
 // import axios from 'axios';
 /**
@@ -56,21 +57,21 @@ function App() {
       >
         <Provider>
           <FuseTheme theme={mainTheme} direction={langDirection}>
-            <AuthRouteProvider>
-              <SnackbarProvider
-                maxSnack={5}
-                anchorOrigin={{
-                  vertical: "bottom",
-                  horizontal: "right",
-                }}
-                classes={{
-                  containerRoot:
-                    "bottom-0 right-0 mb-52 md:mb-68 mr-8 lg:mr-80 z-99",
-                }}
-              >
-                <FuseLayout layouts={themeLayouts} />
-              </SnackbarProvider>
-            </AuthRouteProvider>
+            <SnackbarProvider
+              maxSnack={5}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "right",
+              }}
+              classes={{
+                containerRoot:
+                  "bottom-0 right-0 mb-52 md:mb-68 mr-8 lg:mr-80 z-99",
+              }}
+            >
+              <FuseLayout layouts={themeLayouts}>
+                <AppRoutes />
+              </FuseLayout>
+            </SnackbarProvider>
           </FuseTheme>
         </Provider>
       </CacheProvider>
